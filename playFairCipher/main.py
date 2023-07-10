@@ -2,12 +2,20 @@ def processPlainText(text):
     newText = text.lower()
     newText = newText.replace("j", "i")
     newText = newText.replace(" ", "")
+    if len(newText)%2!=0:
+        newText = newText + 'x'
     i = 0
     while i < len(newText):
+        if len(newText)%2!=0:
+            newText = newText + 'x'
         ch = newText[i:i + 2]
         if ch[0] == ch[1]:
             newText = newText[:i + 1] + 'x' + newText[i + 1:]
+        newText = newText.replace("xx", "x")
         i += 2
+    newText = newText.replace("xx", "x")
+    if len(newText)%2!=0:
+        newText = newText[:-1]
     return newText
 
 
@@ -57,3 +65,10 @@ for char in matrixList:
         row = []
         count = 0
 print(matrix_2d)
+# print(matrix_2d[1][4])
+i=0
+while i < len(processedText):
+    ch = processedText[i:i + 2]
+    print(ch)
+    i += 2
+    
