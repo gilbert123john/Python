@@ -17,13 +17,7 @@ def processPlainText(text):
     if len(newText) % 2 != 0:
         newText = newText[:-1]
     return newText
-
-# def reProcessPlainText(text):
-#     i = 0
-#     while i < len(text):
-#         if text[i]==text[i+2]:
-            
-    
+   
     
 def processCipherText(text):
     newText = text.lower()
@@ -61,8 +55,6 @@ plainText = input("Enter plain Text :")
 cipherKey = input("Enter cipher Key  :")
 processedText = processPlainText(plainText)
 cipherKey = processCipherText(cipherKey)
-print("processedText - ", processedText)
-print("cipherKey - ", cipherKey)
 matrixList = processAlpha(alpha, cipherKey)
 
 matrix_2d = []
@@ -82,16 +74,11 @@ cipher_text = ""
 i = 0
 while i < len(processedText):
     ch = processedText[i:i + 2]
-#     print(ch)
     row_index1, col_index1 = find_index_2d(matrix_2d, ch[0])
     row_index2, col_index2 = find_index_2d(matrix_2d, ch[1])
-#     print("ch1 ",row_index1, col_index1)
-#     print("ch2 ",row_index2, col_index2)
     if row_index1 == row_index2:
         col_index1 = (col_index1 + 1) % 5
         col_index2 = (col_index2 + 1) % 5
-        # print("new 1 ", row_index1, col_index1)
-        # print("new 2 ", row_index2, col_index2)
         cipher_text = cipher_text + matrix_2d[row_index1][col_index1]
         cipher_text = cipher_text + matrix_2d[row_index2][col_index2]
     elif col_index1 == col_index2:
@@ -103,15 +90,13 @@ while i < len(processedText):
         cipher_text = cipher_text + matrix_2d[row_index1][col_index2]
         cipher_text = cipher_text + matrix_2d[row_index2][col_index1]
     i += 2
-print(cipher_text)
+print("Cipher Text - ",cipher_text)
 
 alpha2 = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'k', 'l', 'm',
          'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 userCipher = input("Enter Cipher Text :")
 userKey = input("Enter cipher Key  :")
 userKey = processCipherText(userKey)
-print("userCipher - ", userCipher)
-print("userKey - ", userKey)
 cipher_matrixList = processAlpha(alpha2, userKey)
 
 cipher_matrix_2d = []
@@ -147,6 +132,5 @@ while j < len(userCipher):
         plain_text = plain_text + cipher_matrix_2d[row_index1][col_index2]
         plain_text = plain_text + cipher_matrix_2d[row_index2][col_index1]
     j += 2
-print(plain_text)
 newText = plain_text.replace("x", "")
-print(newText)
+print("plain text - ",newText)
