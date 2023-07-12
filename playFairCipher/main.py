@@ -18,7 +18,13 @@ def processPlainText(text):
         newText = newText[:-1]
     return newText
 
-
+# def reProcessPlainText(text):
+#     i = 0
+#     while i < len(text):
+#         if text[i]==text[i+2]:
+            
+    
+    
 def processCipherText(text):
     newText = text.lower()
     newText = newText.replace("j", "i")
@@ -55,7 +61,6 @@ plainText = input("Enter plain Text :")
 cipherKey = input("Enter cipher Key  :")
 processedText = processPlainText(plainText)
 cipherKey = processCipherText(cipherKey)
-print("plainText - ", plainText)
 print("processedText - ", processedText)
 print("cipherKey - ", cipherKey)
 matrixList = processAlpha(alpha, cipherKey)
@@ -72,16 +77,16 @@ for char in matrixList:
         matrix_2d.append(row)
         row = []
         count = 0
-print(matrix_2d)
+print("First Matrix -",matrix_2d)
 cipher_text = ""
 i = 0
 while i < len(processedText):
     ch = processedText[i:i + 2]
-    print(ch)
+#     print(ch)
     row_index1, col_index1 = find_index_2d(matrix_2d, ch[0])
     row_index2, col_index2 = find_index_2d(matrix_2d, ch[1])
-    print("ch1 ",row_index1, col_index1)
-    print("ch2 ",row_index2, col_index2)
+#     print("ch1 ",row_index1, col_index1)
+#     print("ch2 ",row_index2, col_index2)
     if row_index1 == row_index2:
         col_index1 = (col_index1 + 1) % 5
         col_index2 = (col_index2 + 1) % 5
@@ -107,7 +112,6 @@ userKey = input("Enter cipher Key  :")
 userKey = processCipherText(userKey)
 print("userCipher - ", userCipher)
 print("userKey - ", userKey)
-print("alpha - ", alpha2)
 cipher_matrixList = processAlpha(alpha2, userKey)
 
 cipher_matrix_2d = []
@@ -122,21 +126,16 @@ for char in cipher_matrixList:
         cipher_matrix_2d.append(row)
         row = []
         count = 0
-print(cipher_matrix_2d)
+print("Second Matrix -",cipher_matrix_2d)
 plain_text = ""
 j = 0
 while j < len(userCipher):
-    ch = userCipher[i:i + 2]
-    print(ch)
+    ch = userCipher[j:j + 2]
     row_index1, col_index1 = find_index_2d(cipher_matrix_2d, ch[0])
     row_index2, col_index2 = find_index_2d(cipher_matrix_2d, ch[1])
-    print("ch1 ",row_index1, col_index1)
-    print("ch2 ",row_index2, col_index2)
     if row_index1 == row_index2:
         col_index1 = (col_index1 - 1) % 5
         col_index2 = (col_index2 - 1) % 5
-        # print("new 1 ", row_index1, col_index1)
-        # print("new 2 ", row_index2, col_index2)
         plain_text = plain_text + cipher_matrix_2d[row_index1][col_index1]
         plain_text = plain_text + cipher_matrix_2d[row_index2][col_index2]
     elif col_index1 == col_index2:
@@ -149,3 +148,5 @@ while j < len(userCipher):
         plain_text = plain_text + cipher_matrix_2d[row_index2][col_index1]
     j += 2
 print(plain_text)
+newText = plain_text.replace("x", "")
+print(newText)
