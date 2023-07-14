@@ -69,7 +69,7 @@ for char in matrixList:
         matrix_2d.append(row)
         row = []
         count = 0
-print("First Matrix -",matrix_2d)
+print("First Matrix -", matrix_2d)
 cipher_text = ""
 i = 0
 while i < len(processedText):
@@ -111,7 +111,7 @@ for char in cipher_matrixList:
         cipher_matrix_2d.append(row)
         row = []
         count = 0
-print("Second Matrix -",cipher_matrix_2d)
+print("Second Matrix -", cipher_matrix_2d)
 plain_text = ""
 j = 0
 while j < len(userCipher):
@@ -133,4 +133,4 @@ while j < len(userCipher):
         plain_text = plain_text + cipher_matrix_2d[row_index2][col_index1]
     j += 2
 newText = plain_text.replace("x", "")
-print("plain text - ",newText)
+print("plain text - ", newText)
